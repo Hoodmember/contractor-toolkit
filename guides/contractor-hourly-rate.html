@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Calculate Your Hourly Rate as a Contractor or Handyman (Free Calculator)</title>
+<meta name="description" content="Step-by-step: add up your overhead, owner pay and labor burden to find your break-even and target hourly rate as a contractor or handyman. Includes a free calculator.">
+<link rel="canonical" href="https://hoodmember.github.io/contractor-toolkit/guides/contractor-hourly-rate.html">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top"><div class="wrap"><a href="../">Contractor Profit Kit</a></div></div>
+<main class="wrap">
+<h1>How to Calculate Your Hourly Rate as a Contractor or Handyman</h1>
+<p class="meta">7-minute read · Pricing & estimating</p>
+
+<p>"What does everyone else charge?" is the wrong question. Two handymen in the same town can have completely different costs: one owns a paid-off truck and works from home, the other has a shop lease and an employee. The right rate starts with <b>your</b> numbers.</p>
+
+<h2>Step 1: Add up your monthly overhead</h2>
+<p>Overhead is everything you pay to stay in business that isn't billed to a specific job:</p>
+<ul>
+<li>Truck payment, fuel and maintenance not billed to jobs</li>
+<li>General liability and vehicle insurance</li>
+<li>Phone, internet, software</li>
+<li>Shop, storage or office rent</li>
+<li>Tool replacement and repair</li>
+<li>Advertising, website, lead services</li>
+<li>Accounting, licenses, bonds</li>
+</ul>
+<p>Multiply the monthly total by 12.</p>
+
+<h2>Step 2: Decide what you need to pay yourself</h2>
+<p>Your salary is a cost, not "whatever's left over." Pick a yearly number you'd accept working for someone else.</p>
+
+<h2>Step 3: Count your real billable hours</h2>
+<p>You don't bill 40 hours a week. Estimating, driving, supply runs, invoicing and callbacks eat time. Many small contractors bill closer to 25–32 hours per worker per week. Multiply by the weeks you actually work (allow for holidays, weather and slow periods).</p>
+
+<h2>Step 4: Price your labor at its loaded cost</h2>
+<p>An employee who earns $25/hr costs you more than $25/hr. Add employer payroll taxes, unemployment insurance and workers' comp. That "labor burden" is often 15–30% depending on your state and trade. Ask your insurance agent for your workers' comp rate.</p>
+
+<h2>Step 5: Do the math</h2>
+<div class="box">
+<p style="margin:0"><b>Break-even rate</b> = (annual overhead + owner salary) ÷ billable hours + loaded labor cost per hour<br>
+<b>Target rate</b> = break-even rate ÷ (1 − target profit %)</p>
+</div>
+
+<h3>Worked example: 2-person crew</h3>
+<table>
+<tr><th>Item</th><th>Amount</th></tr>
+<tr><td>Monthly overhead</td><td>$3,050 → $36,600/yr</td></tr>
+<tr><td>Owner salary goal</td><td>$75,000/yr</td></tr>
+<tr><td>Billable hours</td><td>2 workers × 32 hrs × 48 weeks = 3,072</td></tr>
+<tr><td>Overhead + owner pay per hour</td><td>$111,600 ÷ 3,072 = $36.33</td></tr>
+<tr><td>Helper wage + 20% burden</td><td>$30.00</td></tr>
+<tr><td><b>Break-even rate</b></td><td><b>$66.33/hr</b></td></tr>
+<tr><td><b>Target rate (15% profit)</b></td><td><b>$78.03/hr</b></td></tr>
+</table>
+<p>Anything under about $66/hr in this example loses money on every hour worked, even though it might feel like a "good rate."</p>
+
+<div class="box calc">
+<h3 style="margin-top:0">Quick calculator</h3>
+<label for="oh">Monthly overhead ($)</label><input id="oh" type="number" value="3050">
+<label for="sal">Owner salary goal per year ($)</label><input id="sal" type="number" value="75000">
+<label for="wk">Field workers incl. you</label><input id="wk" type="number" value="2">
+<label for="hr">Billable hours per worker per week</label><input id="hr" type="number" value="32">
+<label for="wks">Working weeks per year</label><input id="wks" type="number" value="48">
+<label for="wage">Average employee wage ($/hr)</label><input id="wage" type="number" value="25">
+<label for="bur">Labor burden (%)</label><input id="bur" type="number" value="20">
+<label for="pr">Target profit (%)</label><input id="pr" type="number" value="15">
+<div class="out" id="out"></div>
+</div>
+
+<h2>Turning the hourly rate into job prices</h2>
+<p>Most jobs are quoted as a fixed price, not hourly. Use your rate to price the labor portion, add materials and subs with markup, and check the margin before you send the quote. Remember that <a href="markup-vs-margin.html">markup is not margin</a>.</p>
+
+<div class="cta">
+<h3>Get this calculator as a spreadsheet (free)</h3>
+<p>The free <b>Contractor Pricing Calculator</b> includes a 15-line overhead worksheet and a markup/margin converter. Works in Excel and Google Sheets.</p>
+<a class="btn" href="https://linko42.gumroad.com/l/Free-version">Download free</a>
+&nbsp; <a href="https://linko42.gumroad.com/l/Contractor-toolkit">or get the full Contractor Profit Toolkit</a>
+</div>
+</main>
+<footer><div class="wrap"><a href="../">Contractor Profit Kit</a> · <a href="markup-vs-margin.html">Markup vs margin</a> · <a href="job-costing.html">Job costing</a><br>Educational content, not financial, tax or legal advice.</div></footer>
+<script>
+function v(id){return parseFloat(document.getElementById(id).value)||0}
+function fmt(n){return n.toLocaleString("en-US",{style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2})}
+function calc(){
+  var hrs=v("wk")*v("hr")*v("wks"), o=document.getElementById("out");
+  if(hrs<=0){o.textContent="Enter workers, hours and weeks.";return}
+  var be=(v("oh")*12+v("sal"))/hrs + v("wage")*(1+v("bur")/100);
+  var p=v("pr")/100;
+  if(p>=1){o.textContent="Profit must be under 100%.";return}
+  o.innerHTML="Break-even: "+fmt(be)+"/hr · Target: "+fmt(be/(1-p))+"/hr";
+}
+document.querySelectorAll(".calc input").forEach(function(i){i.addEventListener("input",calc)});
+calc();
+</script>
+</body>
+</html>
